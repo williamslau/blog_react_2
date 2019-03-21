@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// BrowserRouter
+import { BrowserRouter as Router, Route, Redirect, Switch, Link, withRouter } from 'react-router-dom';
+import Banner from './components/banner';
+import Profile from './views/profile';
+import Home from './views/home';
+import Blog from './views/blog';
+import Esary from './views/esary';
+import { Layout } from 'antd';
+const { Content } = Layout;
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+export default class app extends Component {
+    render() {
+        return (<Router>
+            <Banner></Banner>
+            <Switch>
+                <Route path='/home' component={Home} />
+                <Route path='/blog' component={Blog} />
+                <Route path='/esary' component={Esary} />
+                <Route path='/profile' component={Profile} />
+                <Redirect to='/home'></Redirect>
+            </Switch>
+        </Router>)
+    }
 }
-
-export default App;
