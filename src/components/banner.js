@@ -1,30 +1,21 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
+import { Carousel } from 'antd';
 import img1 from '../static/images/timg1.jpg';
-import { Menu, DatePicker } from 'antd';
+import img2 from '../static/images/timg2.jpg';
+import img3 from '../static/images/timg3.jpg';
+import img4 from '../static/images/timg4.jpg';
+import img5 from '../static/images/timg5.jpg';
+
 class Banner extends Component {
     render() {
-        return (<div><DatePicker />
-            <Menu
-                mode="horizontal"
-                // defaultSelectedKeys={['0']}
-                onClick={this.handleClick}
-                style={{ lineHeight: '64px' }}
-            >
-                <Menu.Item key="0">
-                    <Link to="/home">首页</Link>
-                </Menu.Item>
-                <Menu.Item key="1">
-                    <Link to="/blog">博客</Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                    <Link to="/esary">随笔</Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                    <Link to="/profile">设置</Link>
-                </Menu.Item>
-            </Menu>
-        </div>)
+        return (<Carousel effect="fade" className="banner">
+            <img src={img1} alt="" />
+            <img src={img2} alt="" />
+            <img src={img3} alt="" />
+            <img src={img4} alt="" />
+            <img src={img5} alt="" />
+        </Carousel>)
     }
 }
 export default Banner;

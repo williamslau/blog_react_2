@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
+import List from '../components/list'
 class Search extends Component {
-    constructor() {
-        super();
-    }
     render() {
         return (<div>
-            Search
+            <List></List>
         </div>)
     }
 }

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import test from './test'
-let reducer=combineReducers({
-    test
+import list from './list'
+
+export default combineReducers({
+    list,
 })
-export default reducer
