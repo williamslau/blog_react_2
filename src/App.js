@@ -32,7 +32,7 @@ export default class app extends Component {
     scrollFn = (ev) => {
         let timer;
         if (timer) {
-            clearTimeout(timer)
+            clearTimeout(timer);
         }
         timer = setTimeout(() => {
             let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
@@ -49,11 +49,11 @@ export default class app extends Component {
                 <Col span={11} offset={4}>
                     <Switch>
                         <Route path='/home' component={Home} />
-                        <Route path='/blog' component={Blog} />
-                        <Route path='/esary' component={Esary} />
+                        <Route path='/blog' state="1" component={Blog} />
+                        <Route path='/esary' state="2" component={Esary} />
                         <Route path='/profile' component={Profile} />
                         <Route path='/article/:id' component={Article} />
-                        <Route path='/search/:id' component={Search} />
+                        <Route path='/search/:type/:id' component={Search} />
                         <Redirect to='/home'></Redirect>
                     </Switch>
                 </Col>

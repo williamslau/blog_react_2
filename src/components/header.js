@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Row, Col, Input } from 'antd';
+
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 import Menu from './menu';
 
 class Header extends Component {
+    handleSearch = (e) => {
+        console.log(e);
+        this.props.history.push(`/search/input/1`);
+    }
+    handleChange=(e)=>{
+        console.log(e);
+    }
     render() {
         return (<div>
             <Row>
@@ -15,9 +25,9 @@ class Header extends Component {
                         <Col span={12}>
                             <Input.Search
                                 plageholder="请输入关键字"
-                            // value={this.props.inputVal}
-                            // onChange={this.handleChange}
-                            // onSearch={this.handleSearch}
+                                value={this.props.inputVal}
+                                onChange={this.handleChange}
+                                onSearch={this.handleSearch}
                             />
                         </Col>
                         <Col span={12}>
@@ -29,4 +39,6 @@ class Header extends Component {
         </div>)
     }
 }
-export default Header
+export default connect(state => ({
+    inputVal: state.header.inputVal,
+}))(withRouter(Header));

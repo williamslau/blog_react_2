@@ -1,57 +1,57 @@
 import axios from 'axios';
 
-const baseURL = 'http://39.106.133.41:7001';
 const config = {
-    baseURL,
+    // baseURL,
     timeout: 8000,
     withCredentials: true,
 };
-const axiosService =axios.create();
-
-axiosService.interceptors.request.use(function (config){
+const axiosService = axios.create();
+axiosService.interceptors.request.use(function (config) {
     // 处理请求之前的配置
-    //store.dispatch(actions.logingToggle(true));
+    // if (config.method == 'get') {
+    //     // config中无data字段时，headers里的Content-Type无效果
+    //     config.data = true;
+    // }
     return config;
-}, function (error){
+}, function (error) {
     // 请求失败的处理
     return Promise.reject(error);
 });
 // 响应拦截（配置请求回来的信息）
-axiosService.interceptors.response.use(function (response){
+axiosService.interceptors.response.use(function (response) {
     // 处理响应数据
-    //store.dispatch(actions.logingToggle(false));
     return response;
-}, function (error){
+}, function (error) {
     // 处理响应失败
     return error;
 });
-export function get(url,data) {
+export function get(url, data) {
     return axiosService({
-        config,
+        ...config,
         method: 'get',
         url,
-        data,
+        params: data,
     }).then(res => res.data);
 }
 export function post(url, data) {
     return axiosService({
-        config,
+        ...config,
         method: 'post',
         url,
         data,
-    }).then(res =>  res.data);
+    }).then(res => res.data);
 }
 export function put(url, data) {
     return axiosService({
-        config,
+        ...config,
         method: 'put',
-        data,
         url,
+        data,
     }).then(res => res.data);
 }
 export function del(url, data) {
     return axiosService({
-        config,
+        ...config,
         method: 'delete',
         url,
         data,

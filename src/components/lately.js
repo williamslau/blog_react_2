@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import Frame from './frame';
 import { withRouter } from 'react-router-dom';
-import {connect} from 'react-redux';
 
+import actions from '../store/actions/list';
+
+import { connect } from 'react-redux';
 class olList extends Component {
-    routerLink = () => {
-        this.props.history.push(`/article/${2}`);
+    routerLink = (id) => {
+        this.props.history.push(`/article/${id}`);
+    }
+    async componentDidMount() {
+        await this.props.getLatelyData();
     }
     render() {
         return (<ol>
-            <li onClick={this.routerLink}>11</li>
+            {
+                this.props.lately.map((item, index) => (
+                    <li onClick={() => this.routerLink(item.aid)} key={index}>{item.title}</li>
+                ))
+            }
         </ol>)
     }
 }
-const Latelly = Frame('最近文章')(connect(state=>({}))(withRouter(olList)));
+const Latelly = Frame('最近文章')(connect(state =>
+    ({ lately: state.list.lately }),
+    dispatch => ({
+        getLatelyData: () => dispatch(actions.getLatelyData())
+    })
+)(withRouter(olList)));
 export default Latelly;

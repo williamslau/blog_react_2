@@ -6,7 +6,7 @@ import {Tag} from 'antd';
 
 class Tags extends Component {
     routerLink = () => {
-        this.props.history.push(`/search/${2}`);
+        this.props.history.push(`/search/tag/${2}`);
     }
     render() {
         return (<div className="tags">
